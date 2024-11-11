@@ -14,7 +14,7 @@ export default function CustomTabPanel(props: TabPanelProps) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
-      style={{ height: "75lvh", maxHeight: "75lvh", overflowY: "scroll", marginBottom: 10 }}
+      style={{ height: "70lvh", maxHeight: "70lvh", overflowY: "scroll", marginBottom: 10 }}
     >
       {value === index && <>{children}</>}
     </div>

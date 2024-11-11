@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { configs } from "./firebase";
 import { ClientType, RootObject } from "./types";
-import { Button, Grid2 as Grid, Tab, Tabs, Typography } from "@mui/material";
+import { Button, CircularProgress, Grid2 as Grid, Tab, Tabs, Typography } from "@mui/material";
 import TeamAccordion from "./Components/TeamAccordion";
 import { isEmpty, isNull } from "lodash";
 import CustomTabPanel from "./Components/TabPanel";
@@ -16,8 +16,9 @@ function App() {
   const [managerData, setManagerData] = useState<RootObject | null>(null);
   const [selectedTab, setSelectedTab] = useState(0);
   const [sourceType, setSourceType] = useState<"Client" | "Sales Representative" | "Sales Manager" | null>(null);
-  const clients = useMemo(() => {
+  const data = useMemo(() => {
     const clientArray: Array<ClientType> = [];
+    const representativesArray: Array<ClientType> = [];
     if (!isNull(managerData)) {
       // Map direct clients
       managerData?.clients.forEach((client) => clientArray.push(client));
@@ -40,9 +41,26 @@ function App() {
               });
           }
         });
+
+      // Map All Sales Representatives
+      Object.keys(managerData)
+        .filter((key) => salesManagerPattern.test(key))
+        .forEach((salesManager) => {
+          if (managerData[salesManager].salesRepresentatives) {
+            // Map Sales Representative Clients
+            Object.keys(managerData[salesManager].salesRepresentatives)
+              .filter((key) => salesRepresentativePattern.test(key))
+              .forEach((salesRepresentative) => {
+                representativesArray.push(managerData[salesManager].salesRepresentatives[salesRepresentative]);
+              });
+          }
+        });
     }
 
-    return clientArray;
+    return {
+      clients: clientArray,
+      representatives: representativesArray,
+    };
   }, [managerData]);
 
   const fetchData = () => {
@@ -63,8 +81,18 @@ function App() {
     }
   }, [managerData]);
 
+  if (!managerData)
+    return (
+      <Grid container justifyContent="center" alignItems="center" flexDirection="column">
+        <Typography variant="h5">Muhammad Arif Qureshi</Typography>
+        <Typography variant="h6">Sales Dashboard</Typography>
+        <CircularProgress color="secondary" sx={{ marginTop: 10, marginBottom: 1 }} />
+        <Typography variant="subtitle2">Loading Data...</Typography>
+      </Grid>
+    );
+
   return (
-    <Grid container justifyContent="center">
+    <Grid container justifyContent="center" alignItems="center" flexDirection="column">
       <Typography variant="h5">Muhammad Arif Qureshi</Typography>
       <Typography variant="h6">Sales Dashboard</Typography>
       <Tabs value={selectedTab} onChange={(_, newValue) => setSelectedTab(newValue)}>
@@ -95,11 +123,11 @@ function App() {
       </Grid>
       <Grid container justifyContent="center">
         <CustomTabPanel value={selectedTab} index={1}>
-          {!isEmpty(clients) && (
+          {!isEmpty(data.representatives) && (
             <Grid container size={12} justifyContent="flex-start">
-              {clients.map((client, index) => (
-                <Grid size={12} key={`${client.firstName}-${index}-${client.lastName}-arif-qureshi-4575`} mt={1}>
-                  <TeamAccordion employeeData={client} />
+              {data.representatives.map((rep, index) => (
+                <Grid size={12} key={`${rep.firstName}-${index}-${rep.lastName}-arif-qureshi-4575`} mt={1}>
+                  <TeamAccordion employeeData={rep} />
                 </Grid>
               ))}
             </Grid>
@@ -113,9 +141,9 @@ function App() {
       </Grid>
       <Grid container justifyContent="center">
         <CustomTabPanel value={selectedTab} index={2}>
-          {!isEmpty(clients) && (
+          {!isEmpty(data.clients) && (
             <Grid container size={12} justifyContent="flex-start">
-              {clients.map((client, index) => (
+              {data.clients.map((client, index) => (
                 <Grid size={12} key={`${client.firstName}-${index}-${client.lastName}-arif-qureshi-4575`} mt={1}>
                   <TeamAccordion employeeData={client} />
                 </Grid>

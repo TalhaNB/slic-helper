@@ -1,0 +1,120 @@
+{
+  "arif-qureshi-4575": {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "address": "456 Oak Ave",
+    "phoneNumber": "555-234-5678",
+    "email": "jane.smith@example.com",
+    "birthday": "1985-02-02",
+    "code": "123abc",
+    "clients": [
+      {
+        "firstName": "Peter",
+        "lastName": "Jones",
+        "address": "789 Pine Ln",
+        "phoneNumber": "555-345-6789",
+        "email": "peter.jones@example.com",
+        "birthday": "1990-03-03",
+        "premiumDueDate": "1990-03-03",
+        "premiumAmount": 123123,
+        "birthdayAlert": false
+      }
+    ],
+    "salesManager0001": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "address": "456 Oak Ave",
+      "phoneNumber": "555-234-5678",
+      "email": "jane.smith@example.com",
+      "birthday": "1985-02-02",
+      "code": "123abc",
+      "birthdayAlert": false,
+      "salesRepresentatives": {
+        "salesRepresentative0001": {
+          "code": "123abc",
+          "firstName": "Peter",
+          "lastName": "Jones",
+          "address": "789 Pine Ln",
+          "phoneNumber": "555-345-6789",
+          "email": "peter.jones@example.com",
+          "birthday": "1990-03-03",
+          "birthdayAlert": false,
+          "clients": [
+            {
+              "firstName": "Peter",
+              "lastName": "Jones",
+              "address": "789 Pine Ln",
+              "phoneNumber": "555-345-6789",
+              "email": "peter.jones@example.com",
+              "birthday": "1990-03-03",
+              "premiumDueDate": "1990-03-03",
+              "premiumAmount": 123123,
+              "birthdayAlert": false
+            }
+          ]
+        }
+      },
+      "clients": [
+        {
+          "firstName": "Peter",
+          "lastName": "Jones",
+          "address": "789 Pine Ln",
+          "phoneNumber": "555-345-6789",
+          "email": "peter.jones@example.com",
+          "birthday": "1990-03-03",
+          "premiumDueDate": "1990-03-03",
+          "premiumAmount": 123123,
+          "birthdayAlert": false
+        }
+      ]
+    },
+    "salesManager0002": {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "address": "456 Oak Ave",
+      "phoneNumber": "555-234-5678",
+      "email": "jane.smith@example.com",
+      "birthday": "1985-02-02",
+      "code": "123abc",
+      "birthdayAlert": false,
+      "salesRepresentatives": {
+        "salesRepresentative0002": {
+          "code": "123abc",
+          "firstName": "Peter",
+          "lastName": "Jones",
+          "address": "789 Pine Ln",
+          "phoneNumber": "555-345-6789",
+          "email": "peter.jones@example.com",
+          "birthday": "1990-03-03",
+          "birthdayAlert": false,
+          "clients": [
+            {
+              "firstName": "Peter",
+              "lastName": "Jones",
+              "address": "789 Pine Ln",
+              "phoneNumber": "555-345-6789",
+              "email": "peter.jones@example.com",
+              "birthday": "1990-03-03",
+              "premiumDueDate": "1990-03-03",
+              "premiumAmount": 123123,
+              "birthdayAlert": false
+            }
+          ]
+        }
+      },
+      "clients": [
+        {
+          "firstName": "Peter",
+          "lastName": "Jones",
+          "address": "789 Pine Ln",
+          "phoneNumber": "555-345-6789",
+          "email": "peter.jones@example.com",
+          "birthday": "1990-03-03",
+          "premiumDueDate": "1990-03-03",
+          "premiumAmount": 123123,
+          "birthdayAlert": false
+        }
+      ]
+    }
+  }
+}

@@ -9,26 +9,23 @@ type User = {
   birthdayAlert: boolean;
 };
 
-interface Client extends User {
+export interface ClientType extends User {
   premiumDueDate: string;
   premiumAmount: number;
 }
 
-interface SalesManagerType extends User {
+export interface SalesManagerType extends User {
   salesRepresentatives: {
     [key: string]: SalesRep;
   };
-  clients: {
-    [key: string]: Client;
-  };
+  clients: Array<ClientType>;
 }
 
-interface SalesRepType extends User {
-  clients: {
-    [key: string]: Client;
-  };
+export interface SalesRepType extends User {
+  clients: Array<ClientType>;
 }
 
 export interface RootObject extends User {
   [key: string]: SalesManagerType; // Key is string (user ID) and value is either User or Manager type
+  clients: Array<ClientType>;
 }
